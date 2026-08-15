@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <title>Mini Discord</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <!-- ---------- หน้าเข้าสู่ระบบ ---------- -->
+    <div id="login-screen">
+        <div class="login-card">
+            <h1>💬 Mini Discord</h1>
+            <p>ตั้งชื่อผู้ใช้เพื่อเข้าห้องแชทและวิดีโอคอล</p>
+            <input type="text" id="username-input" placeholder="ชื่อของคุณ..." maxlength="24" autocomplete="off" />
+            <button id="join-btn">เข้าร่วม</button>
+        </div>
+    </div>
+
+    <!-- ---------- แอปหลัก ---------- -->
+    <div id="app">
+        <div id="sidebar-backdrop"></div>
+
+        <!-- Sidebar: ห้อง + รายชื่อผู้ใช้ -->
+        <div id="sidebar">
+            <div class="sidebar-section" style="flex:1; overflow-y:auto;">
+                <h3>
+                    ห้องแชท (กลุ่ม)
+                    <button class="add-room-btn" id="add-room-btn" title="สร้างห้องใหม่">＋</button>
+                </h3>
+                <div id="room-list"></div>
+
+                <h3>ผู้ใช้ออนไลน์</h3>
+                <div id="user-list"></div>
+            </div>
+
+            <div id="me-bar">
+                <div id="me-avatar">?</div>
+                <div id="me-name">-</div>
+            </div>
+        </div>
+
+        <!-- Topbar -->
+        <div id="topbar">
+            <button id="menu-toggle">☰</button>
+            <div id="current-title"># general</div>
+            <div id="topbar-actions">
+                <button class="topbar-btn" id="voice-toggle-btn">🎤<span class="label">เข้าร่วมช่องเสียง</span></button>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div id="main">
+            <div id="video-panel"></div>
+            <div id="messages"></div>
+            <div id="composer">
+                <input type="text" id="msg-input" placeholder="พิมพ์ข้อความ..." autocomplete="off" />
+                <button id="send-btn">ส่ง</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------- Modal: สายเรียกเข้า ---------- -->
+    <div id="call-modal">
+        <div class="call-card">
+            <div class="call-avatar" id="call-avatar">?</div>
+            <h3 id="call-title">สายเรียกเข้า</h3>
+            <p id="call-sub">กำลังโทรมา...</p>
+            <div class="call-actions">
+                <button class="accept-btn" id="accept-call-btn">รับสาย</button>
+                <button class="reject-btn" id="reject-call-btn">ปฏิเสธ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
